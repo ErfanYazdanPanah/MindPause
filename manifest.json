@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "MindPause",
-  "description": "Pause before opening distracting websites.",
   "version": "1.0.0",
+  "description": "Pause before opening distracting websites.",
 
   "permissions": [
     "storage",
@@ -16,10 +16,6 @@
 
   "background": {
     "service_worker": "background.js"
-  },
-
-  "action": {
-    "default_title": "MindPause"
   },
 
   "options_page": "options.html",
