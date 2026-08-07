@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MindPause Settings</title>
+
+    <style>
+
+        body {
+            background:#0b0f19;
+            color:white;
+            font-family:Tahoma, sans-serif;
+            padding:40px;
+        }
+
+        .box {
+
+            max-width:600px;
+            margin:auto;
+
+            background:
+            rgba(255,255,255,0.08);
+
+            padding:30px;
+
+            border-radius:25px;
+
+        }
+
+
+        h1 {
+            text-align:center;
+        }
+
+
+        textarea,
+        input {
+
+            width:100%;
+
+            padding:12px;
+
+            margin-top:10px;
+
+            border-radius:12px;
+
+            border:none;
+
+            background:#1b2333;
+
+            color:white;
+
+        }
+
+
+        button {
+
+            margin-top:20px;
+
+            width:100%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#7ee8a5;
+
+            cursor:pointer;
+
+            font-size:16px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<h1>
+🌿 MindPause
+</h1>
+
+
+<h3>
+سایت‌ها (هر خط یک سایت)
+</h3>
+
+
+<textarea
+id="sites"
+rows="8">
+</textarea>
+
+
+<h3>
+زمان مکث (ثانیه)
+</h3>
+
+
+<input
+id="delay"
+type="number"
+min="1"
+value="15"
+>
+
+
+<button id="save">
+ذخیره تنظیمات
+</button>
+
+
+</div>
+
+
+<script src="options.js"></script>
+
+
+</body>
+
+</html>
