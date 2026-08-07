@@ -8,65 +8,62 @@ const messages = [
 
 let timeLeft = 15;
 
+
 const timer = document.getElementById("timer");
 const message = document.getElementById("message");
 const circle = document.getElementById("progress");
 
 
-// انتخاب پیام تصادفی
 message.textContent =
-    messages[Math.floor(Math.random() * messages.length)];
+messages[Math.floor(Math.random()*messages.length)];
 
 
-// تنظیم دایره
-const totalLength = 596;
-circle.style.strokeDasharray = totalLength;
+const urlParams =
+new URLSearchParams(window.location.search);
+
+
+const target =
+urlParams.get("target");
+
+
+const length = 596;
+
+circle.style.strokeDasharray = length;
+
 
 
 function updateCircle(){
 
-    const offset =
-        totalLength -
-        (timeLeft / 15) * totalLength;
+    let value =
+    length - ((timeLeft / 15) * length);
 
-    circle.style.strokeDashoffset = offset;
+    circle.style.strokeDashoffset=value;
 
 }
 
 
 
-const countdown = setInterval(() => {
+let interval=setInterval(()=>{
 
 
     timeLeft--;
 
-    timer.textContent = timeLeft;
-
+    timer.textContent=timeLeft;
 
     updateCircle();
 
 
 
-    if(timeLeft <= 0){
+    if(timeLeft<=0){
 
-        clearInterval(countdown);
-
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const target =
-            params.get("target");
-
+        clearInterval(interval);
 
 
         if(target){
 
-            window.location.href =
-                decodeURIComponent(target);
+            window.location.replace(
+                decodeURIComponent(target)
+            );
 
         }
 
