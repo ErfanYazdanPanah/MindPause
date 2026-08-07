@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "MindPause",
+  "description": "Pause before opening distracting websites.",
+  "version": "1.0.0",
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_title": "MindPause"
+  },
+
+  "options_page": "options.html",
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "countdown.html",
+        "countdown.css",
+        "countdown.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
