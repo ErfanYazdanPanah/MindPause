@@ -7,23 +7,42 @@ const DEFAULT_SITES = [
   "reddit.com"
 ];
 
+
 chrome.runtime.onInstalled.addListener(() => {
+
   chrome.storage.sync.get(["sites", "delay"], (data) => {
+
     if (!data.sites) {
+
       chrome.storage.sync.set({
         sites: DEFAULT_SITES,
         delay: 15
       });
+
     }
+
   });
+
 });
+
 
 
 chrome.webNavigation.onBeforeNavigate.addListener((details) => {
 
+
+  // فقط صفحه اصلی تب، نه عکس و فایل و...
   if (details.frameId !== 0) return;
 
+
   const url = details.url;
+
+
+  // جلوگیری از گیر افتادن در حلقه تایمر
+  if (url.includes("countdown.html")) {
+    return;
+  }
+
+
 
   if (
     url.startsWith("chrome://") ||
@@ -34,16 +53,21 @@ chrome.webNavigation.onBeforeNavigate.addListener((details) => {
   }
 
 
+
   chrome.storage.sync.get(["sites"], (data) => {
+
 
     const sites = data.sites || DEFAULT_SITES;
 
-    const blocked = sites.some(site =>
+
+    const matched = sites.some(site =>
       url.includes(site)
     );
 
 
-    if (!blocked) return;
+
+    if (!matched) return;
+
 
 
     const countdownURL =
@@ -52,10 +76,16 @@ chrome.webNavigation.onBeforeNavigate.addListener((details) => {
       encodeURIComponent(url);
 
 
-    chrome.tabs.update(details.tabId, {
-      url: countdownURL
-    });
+
+    chrome.tabs.update(
+      details.tabId,
+      {
+        url: countdownURL
+      }
+    );
+
 
   });
+
 
 });
